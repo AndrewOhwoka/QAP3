@@ -22,7 +22,7 @@ window.addEventListener("DOMContentLoaded", function (e) {
       alert("Please enter a Name and Age");
       return;
     }
-  
+
     age = parseInt(age); //convert to number
     if (!isNaN(age)) {
       console.log("Age is a number");
