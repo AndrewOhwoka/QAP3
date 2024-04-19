@@ -3,22 +3,14 @@ class User {
       this.name = n;
       this.age = a;
     }
-   
-    // makeObj() {
-    //     // implementation
-       
-
-    // }
-
-    // displayObj() {
-    //     // implementation
-    // }
-
-    // clearFields() {
-    //     document.querySelector("#name").value = "";
-    //     document.querySelector("#age").value = "";
-    // }
 }
+
+function clearFields() {
+    document.querySelector("#name").value = "";
+    document.querySelector("#age").value = "";
+}
+
+let user; // Declare user outside the event listeners so it can be accessed in both
 
 window.addEventListener("DOMContentLoaded", function (e) {
     document.querySelector("#make").addEventListener("click", function (e) {
@@ -30,12 +22,16 @@ window.addEventListener("DOMContentLoaded", function (e) {
             console.log("Age is a number");
         } else {
            alert("Age must be a number");
+           return;
         }
         user = new User(name, age);
+        if (user.name === "" || isNaN(user.age)) {
+            alert("Please enter a name and age");
+            return;
+        } 
         console.log(user);
-        // console.log("Make Button clicked!");
+        clearFields(); // Clear the fields after creating the user
         e.preventDefault();
-        
     });
 
     document.querySelector("#displayButton").addEventListener("click", function (e) {
@@ -43,11 +39,10 @@ window.addEventListener("DOMContentLoaded", function (e) {
         if (user) {
             let html = `<p> Name: ${user.name} <br/> Age: ${user.age}</p> `;
             document.querySelector("#userInfo").innerHTML = html;
-            // console.log("Display Button clicked!");
+            clearFields(); // Clear the fields after displaying the user
         } else {
             console.log("No user to display");
         }
         e.preventDefault();
     });
-    
 });
